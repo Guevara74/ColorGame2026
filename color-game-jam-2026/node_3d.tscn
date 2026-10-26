@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bnda2acmrjpwc"]
+
+[node name="Node3D" type="Node3D" unique_id=200968513]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1869348953]
