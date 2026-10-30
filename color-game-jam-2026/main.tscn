@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b3u11kqw5ivrv"]
 
 [ext_resource type="Script" uid="uid://bd3mk6ofejdi6" path="res://character_body_3d.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dn5uocpuaqvc4" path="res://mug.gd" id="2_0xm2m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -21,6 +22,15 @@ height = 14.273193
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jvv8r"]
 radius = 2.6518555
 height = 14.434082
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nosjm"]
+height = 1.1884308
+radius = 0.59716797
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jvv8r"]
+top_radius = 0.58496094
+bottom_radius = 0.58496094
+height = 1.1679688
 
 [node name="Main" type="Node3D" unique_id=1584396590]
 
@@ -52,9 +62,9 @@ use_collision = true
 size = Vector3(36.87207, 0.30664063, 49.17608)
 
 [node name="desk1" type="CSGBox3D" parent="." unique_id=203967218]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.069826, 5.991907, -5.225557)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.069826, 5.991907, -5.304712)
 use_collision = true
-size = Vector3(9.490997, 0.68115234, 6.0126953)
+size = Vector3(9.649307, 0.68115234, 6.0126953)
 
 [node name="desk2" type="CSGBox3D" parent="." unique_id=48593913]
 transform = Transform3D(-4.371139e-08, 0, 1, -1, -4.371139e-08, -4.371139e-08, 4.371139e-08, -1, 1.9106855e-15, 9.048824, 3.276029, -9.764117)
@@ -101,6 +111,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5519133, 4.0852747, 1.5525
 [node name="Camera3D" type="Camera3D" parent="Player/Head" unique_id=1978177579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.117832184, 0, 5.1505964e-09)
 
+[node name="SeeCast" type="RayCast3D" parent="Player/Head/Camera3D" unique_id=40134472]
+unique_name_in_owner = true
+transform = Transform3D(23, -9.302631e-07, 7.867189e-14, 0, -3.7902143e-07, -16.776, 2.4675414e-06, 8.671, -7.333022e-07, -0.05530119, -0.39303112, -1.7803737)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Head" unique_id=1351970458]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04681778, -5.2586355, -0.019941805)
 cast_shadow = 0
@@ -110,3 +124,34 @@ mesh = SubResource("CapsuleMesh_jvv8r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.608093, -1.201437, -0.019280752)
 shape = SubResource("CapsuleShape3D_jvv8r")
 debug_color = Color(0.9593931, 0.014411406, 0.5167276, 0.41960785)
+
+[node name="MUG" type="RigidBody3D" parent="." unique_id=2021955904]
+script = ExtResource("2_0xm2m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MUG" unique_id=1107931812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7955093, 6.9360466, -8.546808)
+shape = SubResource("CylinderShape3D_nosjm")
+debug_color = Color(0.91764706, 0, 0.7019608, 0.64705884)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MUG" unique_id=1349213825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.803053, 6.943375, -8.537823)
+mesh = SubResource("CylinderMesh_jvv8r")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1735548680]
+
+[node name="BoxContainer" type="BoxContainer" parent="CanvasLayer" unique_id=1062719640]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractText" type="Label" parent="CanvasLayer/BoxContainer" unique_id=1418832076]
+layout_mode = 2
+text = "Press 'E' to interact"

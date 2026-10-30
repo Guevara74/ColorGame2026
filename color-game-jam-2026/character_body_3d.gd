@@ -28,8 +28,17 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 		
-
+	
 func _physics_process(delta: float) -> void:
+	
+	$"../CanvasLayer/BoxContainer/InteractText".hide()
+	if %SeeCast.is_colliding():
+		var target = %SeeCast.get_collider()
+		if target != null and target.has_method("interact"):
+			$"../CanvasLayer/BoxContainer/InteractText".show()
+			if Input.is_action_just_pressed("interact"):
+				target.interact()
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
