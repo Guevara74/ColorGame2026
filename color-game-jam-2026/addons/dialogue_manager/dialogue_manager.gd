@@ -146,7 +146,7 @@ func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_
 	var line: DialogueLine = await _get_next_dialogue_line(resource, key, extra_game_states, mutation_behaviour)
 	if line == null:
 		# End the conversation
-		dialogue_ended.emit(resource)
+		dialogue_ended.emit()
 	return line
 
 
@@ -664,7 +664,7 @@ func static_id_to_line_ids(resource: DialogueResource, static_id: String) -> Pac
 
 # Call "start" on the given balloon.
 func _start_balloon(balloon: Node, resource: DialogueResource, cue: String, extra_game_states: Array) -> void:
-	dialogue_started.emit(resource)
+	dialogue_started.emit()
 
 	assert(get_current_scene.is_valid())
 

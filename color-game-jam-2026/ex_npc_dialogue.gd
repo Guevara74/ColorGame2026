@@ -14,9 +14,11 @@ func _process(_delta: float) -> void:
 
 func interact():
 	if dialogue_resource:
+		$"../CanvasLayer/BoxContainer/InteractText".hide()
 		DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start)
 	else:
 		print("No dialogue resource assigned to this NPC!")
+		
 		
 		
 		
