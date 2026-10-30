@@ -15,6 +15,7 @@ run/main_scene="uid://b3u11kqw5ivrv"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+<<<<<<< Updated upstream
 [autoload]
 
 DialogueManager="*uid://c3rodes2l3gxb"
@@ -26,6 +27,11 @@ runtime/balloon_path="res://Dialogue/balloon.tscn"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+=======
+[filesystem]
+
+import/blender/enabled=false
+>>>>>>> Stashed changes
 
 [input]
 
