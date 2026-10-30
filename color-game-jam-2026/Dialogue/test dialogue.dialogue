@@ -1,0 +1,11 @@
+~ start
+Purple: [[Hi|Hello|Howdy]], this is some dialogue.
+Purple: Here are some choices.
+- First one
+	Purple: You picked the first one.
+- Second one
+	Purple: You picked the second one.
+- Start again => start
+- End the conversation => END
+Purple: For more information see the online documentation.
+=> END

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bd3mk6ofejdi6" path="res://character_body_3d.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://dn5uocpuaqvc4" path="res://mug.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dwu31jp31g3g2" path="res://ex_npc_dialogue.gd" id="3_1bvp3"]
+[ext_resource type="Resource" uid="uid://cbfti7225yhcw" path="res://Dialogue/purple.dialogue" id="4_1bvp3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -32,6 +34,17 @@ top_radius = 0.58496094
 bottom_radius = 0.58496094
 height = 1.1679688
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8s3to"]
+radius = 2.3510742
+height = 15.005493
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8s3to"]
+radius = 2.2636719
+height = 14.919922
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8s3to"]
+albedo_color = Color(0.7975915, 0.50831497, 1, 1)
+
 [node name="Main" type="Node3D" unique_id=1584396590]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1785643028]
@@ -45,61 +58,85 @@ environment = SubResource("Environment_h2yge")
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 12.027531, 7.998808, -14.57067)
 use_collision = true
 size = Vector3(15.513672, 0.30664063, 48.89059)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="wall2" type="CSGBox3D" parent="." unique_id=1981179295]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, -6.2775846, 7.908162, 9.956476)
 use_collision = true
 size = Vector3(15.765625, 0.30664063, 36.56624)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="wall3" type="CSGBox3D" parent="." unique_id=112314918]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -24.509403, 7.9926205, -5.7429743)
 use_collision = true
 size = Vector3(15.513672, 0.30664063, 31.614223)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="floor" type="CSGBox3D" parent="." unique_id=427580826]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2229924, 0.4922676, -14.448676)
 use_collision = true
 size = Vector3(36.87207, 0.30664063, 49.17608)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="desk1" type="CSGBox3D" parent="." unique_id=203967218]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.069826, 5.991907, -5.304712)
 use_collision = true
 size = Vector3(9.649307, 0.68115234, 6.0126953)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="desk2" type="CSGBox3D" parent="." unique_id=48593913]
 transform = Transform3D(-4.371139e-08, 0, 1, -1, -4.371139e-08, -4.371139e-08, 4.371139e-08, -1, 1.9106855e-15, 9.048824, 3.276029, -9.764117)
 use_collision = true
 size = Vector3(5.9201965, 0.68115234, 6.0126953)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="desk3" type="CSGBox3D" parent="." unique_id=16708974]
 transform = Transform3D(-4.371139e-08, 0, 1, -1, -4.371139e-08, -4.371139e-08, 4.371139e-08, -1, 1.9106855e-15, 9.048824, 3.276029, -0.81951785)
 use_collision = true
 size = Vector3(5.9201965, 0.68115234, 6.0126953)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Fridge" type="CSGBox3D" parent="." unique_id=1943507624]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.449839, 5.858073, 6.313319)
 use_collision = true
 size = Vector3(4, 10.374084, 5.7998047)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="bed" type="CSGBox3D" parent="." unique_id=631889402]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.224576, 2.9161458, 5.837882)
 use_collision = true
 size = Vector3(17.753387, 4.619507, 8.198303)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="pillow" type="CSGBox3D" parent="." unique_id=1163374590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.246538, 5.8141994, 6.163218)
 use_collision = true
 size = Vector3(3.3812866, 0.90625, 5.6518555)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="computer1" type="CSGBox3D" parent="." unique_id=385919835]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.601096, 7.0438247, -5.3296432)
 use_collision = true
 size = Vector3(0.19069672, 1.2142105, 1.1607666)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="computer2" type="CSGBox3D" parent="." unique_id=76325284]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.593014, 9.145899, -4.9450216)
 use_collision = true
 size = Vector3(0.52983093, 4.1078186, 6.6018066)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1257506465]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 10.104767, 0)
@@ -110,6 +147,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5519133, 4.0852747, 1.5525
 
 [node name="Camera3D" type="Camera3D" parent="Player/Head" unique_id=1978177579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.117832184, 0, 5.1505964e-09)
+current = true
 
 [node name="SeeCast" type="RayCast3D" parent="Player/Head/Camera3D" unique_id=40134472]
 unique_name_in_owner = true
@@ -155,3 +193,16 @@ grow_vertical = 2
 [node name="InteractText" type="Label" parent="CanvasLayer/BoxContainer" unique_id=1418832076]
 layout_mode = 2
 text = "Press 'E' to interact"
+
+[node name="ex npc" type="RigidBody3D" parent="." unique_id=1346188056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5599384, 8.185911, -30.547255)
+script = ExtResource("3_1bvp3")
+dialogue_resource = ExtResource("4_1bvp3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ex npc" unique_id=1663945368]
+shape = SubResource("CapsuleShape3D_8s3to")
+debug_color = Color(0.98039216, 0, 0.4, 0.49411765)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ex npc" unique_id=231137034]
+mesh = SubResource("CapsuleMesh_8s3to")
+surface_material_override/0 = SubResource("StandardMaterial3D_8s3to")

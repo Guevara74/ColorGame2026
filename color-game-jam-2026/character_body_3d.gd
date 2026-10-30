@@ -11,6 +11,9 @@ const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
 var t_bob = 0.0
 
+#dialogue variable
+var can_move = false
+var dialogue_active = false
 
 var gravity = 9.8
 
@@ -20,6 +23,8 @@ var gravity = 9.8
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	DialogueManager.dialogue_started.connect(_on_dialogue_started)
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	
 	
 func _unhandled_input(event):
@@ -31,14 +36,21 @@ func _unhandled_input(event):
 	
 func _physics_process(delta: float) -> void:
 	
+	if dialogue_active:
+		velocity = Vector3.ZERO
+		move_and_slide()
+		return
+	
+	#Handle ineraction
 	$"../CanvasLayer/BoxContainer/InteractText".hide()
 	if %SeeCast.is_colliding():
 		var target = %SeeCast.get_collider()
 		if target != null and target.has_method("interact"):
 			$"../CanvasLayer/BoxContainer/InteractText".show()
 			if Input.is_action_just_pressed("interact"):
+				dialogue_active = true
 				target.interact()
-	
+				
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -56,6 +68,7 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("back", "front", "left", "right")
 	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
 	if is_on_floor():
 		if direction:
 			velocity.x = direction.x * speed
@@ -74,9 +87,21 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+#head bob
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+	
+	
+#dialogue control
+func _on_dialogue_started() -> void:
+	dialogue_active = true
+	can_move = false
+	
+	
+func _on_dialogue_ended() -> void:
+	dialogue_active = false
+	can_move = true
 	
