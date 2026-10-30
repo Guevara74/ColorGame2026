@@ -12,7 +12,7 @@ config_version=5
 
 config/name="ColorGameJam2026"
 run/main_scene="uid://b3u11kqw5ivrv"
-config/features=PackedStringArray("4.7", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [input]
