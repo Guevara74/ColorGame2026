@@ -19,13 +19,31 @@ var gravity = 9.8
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
+@onready var seecast = %SeeCast
+
+var current_target: Node3D = null
+
+#raycast
+signal interact_object
 
 
 func _ready():
+	add_to_group("player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	DialogueManager.dialogue_started.connect(_on_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	
+	
+	
+func _process(_delta):
+	if seecast.is_colliding():
+		var collider = seecast.get_collider()
+		interact_object.emit(collider)
+	else:
+		interact_object.emit(null)
+		
+
+
 	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -42,15 +60,28 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	#Handle ineraction
-	$"../CanvasLayer/BoxContainer/InteractText".hide()
+	$"../../CanvasLayer/BoxContainer/InteractText".hide()
+	
 	if %SeeCast.is_colliding():
 		var target = %SeeCast.get_collider()
+		
 		if target != null and target.has_method("interact"):
-			$"../CanvasLayer/BoxContainer/InteractText".show()
+			$"../../CanvasLayer/BoxContainer/InteractText".show()
+			
 			if Input.is_action_just_pressed("interact"):
 				dialogue_active = true
 				target.interact()
+			
 				
+		if target != current_target:
+			clear_target()
+			current_target = target
+			if current_target.has_method("set_selected"):
+				current_target.set_selected(true)
+	else:
+		clear_target()
+
+			
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -87,6 +118,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func clear_target():
+	if current_target:
+		if current_target.has_method("set_selected"):
+			current_target.set_selected(false)
+			current_target = null
+
 #head bob
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
@@ -104,4 +141,7 @@ func _on_dialogue_started() -> void:
 func _on_dialogue_ended() -> void:
 	dialogue_active = false
 	can_move = true
+	
+
+
 	

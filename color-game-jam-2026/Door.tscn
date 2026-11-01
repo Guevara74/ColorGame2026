@@ -1,0 +1,44 @@
+[gd_scene format=4 uid="uid://c8u6iek261bxi"]
+
+[ext_resource type="Script" uid="uid://dafetvy0afgem" path="res://door.gd" id="1_1vvux"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8s3to"]
+size = Vector3(0.12939453, 12.733154, 7.822876)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0up4"]
+albedo_color = Color(0.38863957, 0.85194826, 0.8894374, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1vvux"]
+_surfaces = [{
+"aabb": AABB(-0.23790234, -6.539782, -4.084643, 0.4758047, 13.079564, 8.169286),
+"attribute_data": PackedByteArray("AAAAAAAAAACrqio/AAAAAKuqqj4AAAAAAACAPwAAAAAAAAAAAAAAP6uqKj8AAAA/q6qqPgAAAD8AAIA/AAAAP6uqqj4AAAAAAAAAAAAAAD+rqio/AAAAAKuqqj4AAAA/q6qqPgAAAD8AAAAAAACAP6uqKj8AAAA/q6qqPgAAgD+rqqo+AAAAP6uqKj8AAAA/q6oqPwAAAD8AAIA/AAAAP6uqqj4AAIA/q6oqPwAAgD+rqio/AACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAAEAAIAAgAEAAYAAQAFAAMAAwAFAAcACAAMAAoACgAMAA4ACQANAAsACwANAA8AEAAUABIAEgAUABYAEQAVABMAEwAVABcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("rJxzvuVF0UBltYJArJxzPuVF0UBltYLArJxzPuVF0UBltYJArJxzvuVF0UBltYLArJxzvuVF0cBltYJArJxzPuVF0cBltYLArJxzPuVF0cBltYJArJxzvuVF0cBltYLArJxzPuVF0UBltYJArJxzvuVF0UBltYLArJxzPuVF0UBltYLArJxzvuVF0UBltYJArJxzPuVF0cBltYJArJxzvuVF0cBltYLArJxzPuVF0cBltYLArJxzvuVF0cBltYJArJxzPuVF0UBltYJArJxzvuVF0cBltYJArJxzvuVF0UBltYJArJxzPuVF0cBltYJArJxzPuVF0UBltYLArJxzvuVF0cBltYLArJxzvuVF0UBltYLArJxzPuVF0cBltYLA/3//f////7//////AAD/v/9//3////+//////wAA/7//f/9/////v/////8AAP+//3//f////7//////AAD/v///AID/////AAAAgP9//7///wCA/////wAAAID/f/+///8AgP////8AAACA/3//v///AID/////AAAAgP9//78AgP//AAD/vwCAAAD///+/AID//wAA/78AgAAA////vwCA//8AAP+/AIAAAP///78AgP//AAD/vwCAAAD///+/")
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbk66"]
+albedo_color = Color(0.098098494, 0.098098524, 0.09809851, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nosjm"]
+size = Vector3(0.13623047, 12.821411, 7.748657)
+
+[node name="Door" type="StaticBody3D" unique_id=1960297292]
+script = ExtResource("1_1vvux")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1532507375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7770159, 4.6918426, -0.7722044)
+mesh = SubResource("BoxMesh_8s3to")
+surface_material_override/0 = SubResource("StandardMaterial3D_f0up4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=494813402]
+mesh = SubResource("ArrayMesh_1vvux")
+surface_material_override/0 = SubResource("StandardMaterial3D_jbk66")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1563034571]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77455294, 4.744934, -0.84045815)
+shape = SubResource("BoxShape3D_nosjm")
